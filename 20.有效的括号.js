@@ -9,8 +9,23 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
-
+var isValid = function (s) {
+  let arr = []
+  for (k of s) {
+    switch (k) {
+      case '{':
+      case '(':
+      case '[':
+        arr.push(k);
+        break;
+      case '}':
+      case ')':
+      case ']':
+        if (k !== arr.pop()) return false;
+        break;
+    }
+  }
+  return true
 };
 // @lc code=end
 

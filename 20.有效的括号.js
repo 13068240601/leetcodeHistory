@@ -10,7 +10,13 @@
  * @return {boolean}
  */
 var isValid = function (s) {
+  if (s.length % 2 !== 0) return false
   let arr = []
+  let obj = {
+    ']': '[',
+    '}': '{',
+    ')': '(',
+  }
   for (k of s) {
     switch (k) {
       case '{':
@@ -21,10 +27,11 @@ var isValid = function (s) {
       case '}':
       case ')':
       case ']':
-        if (k !== arr.pop()) return false;
+        if (obj[k] !== arr.pop()) return false;
         break;
     }
   }
+  if(arr.length>0) return false
   return true
 };
 // @lc code=end
